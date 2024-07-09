@@ -19,12 +19,19 @@ public class ProductService {
         return webClient.get()
                 .uri("/products")
                 .retrieve()
-                .bodyToMono(String.class);
+                .bodyToMono(String.class)
+                .onErrorResume(throwable -> { // Handle network or other errors
+                    return Mono.just(throwable.getMessage());
+                });
     }
+
     public Mono<String> findProduct(int id) {
         return webClient.get()
-                .uri("/products/"+id)
+                .uri("/products/" + id)
                 .retrieve()
-                .bodyToMono(String.class);
+                .bodyToMono(String.class)
+                .onErrorResume(throwable -> {
+                    return Mono.just(throwable.getMessage());
+                });
     }
 }
