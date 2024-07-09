@@ -1,4 +1,4 @@
-package com.asiosoTest; // Ensure this matches your directory structure
+package com.asiosoTest;
 
 import com.asioso.ProductController;
 import com.asioso.ProductService;
